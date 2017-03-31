@@ -30,7 +30,7 @@
 
 "nazwa" : "D",
 
-"ma_jednostke" : false
+"ma_jednostke" : true
 
 },
 
@@ -123,7 +123,14 @@
 
 "miasta" : ["C", "D"],
 
-"czas_przejazdu" : 6
+"czas_przejazdu" : 3
+
+},
+{
+
+"miasta" : ["E", "D"],
+
+"czas_przejazdu" : 3
 
 },
 {

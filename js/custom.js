@@ -19,6 +19,30 @@ function removeA(arr) {
     return arr;
 }
 
+//MAIN ALGORITHM SUPPORTING FUNCTION
+function mainAlgorithmSupport(city,obj,which){
+    
+    var temporaryCityParameter={
+        name:"",
+        time:""
+    };
+    
+    if(city.name==obj.miasta[0]){
+        temporaryCityParameter.name=obj.miasta[1];
+    }else{
+        temporaryCityParameter.name=obj.miasta[0];
+    }
+
+    temporaryCityParameter.time=obj.czas_przejazdu;
+    //Flag Variable to  achieve only one city.
+    var isCityUnique=true;
+    city[which].forEach(function(objInner){
+        if(objInner.name==temporaryCityParameter.name){
+            isCityUnique=false;
+        }
+    })
+    return [isCityUnique, temporaryCityParameter];
+}
 //UPLOAD 1st PART WHICH LAUNCHES onReaderLoad() FUNCTION
 //AND CHECKS WHEATHER FILES WAS .JSON
 function onUpload(){
@@ -58,66 +82,42 @@ function onReaderLoad(event){
                 name:"",
                 hasFirebrigade: "",
                 reachableCities: [],
-                unreachableCities: []
+                unreachableCities: [],
+                reachableFrom:[]
             }
             
             //ASSIGNING VALUES OF CITY NAME AND IF THE CITY HAS A FIRE BRIGADE
             city.name=obj.nazwa;
             city.hasFirebrigade=obj.ma_jednostke;
             
-            if(!city.hasFirebrigade){
-                citiesWithoutFirebrigade.push(city.name);
-            }
+            
             //MAIN PROCESSING ALGORITHM
             if(city.hasFirebrigade){
                 mainDataGlobal.drogi.forEach(function(obj){
                     if(city.name==obj.miasta[0] || city.name==obj.miasta[1]){
                         if(maxTimeGlobal>=obj.czas_przejazdu){
-                            
-                            //VARIABLE TO BE ADD TO THE CITY JSON OBJECT
-                            //UNDER THE FIELD REACHABLE OR UNREACHABLE CITY
-                            var temporaryCityParameter={
-                                name:"",
-                                time:""
-                            };
-                            
-                            if(city.name==obj.miasta[0]){
-                                temporaryCityParameter.name=obj.miasta[1];
-                            }else{
-                                temporaryCityParameter.name=obj.miasta[0];
-                            }
-                            temporaryCityParameter.time=obj.czas_przejazdu;
-                            //Flag Variable to  achieve only one city.
-                            var isCityUnique=true;
-                            city.reachableCities.forEach(function(obj){
-                                if(obj.name==temporaryCityParameter.name){
-                                    isCityUnique=false;
-                                }
-                            })
-                            if(isCityUnique){
-                                city.reachableCities.push(temporaryCityParameter);
+                            var support= mainAlgorithmSupport(city,obj,"reachableCities");
+                            if(support[0]){
+                                city.reachableCities.push(support[1]);
                             }
                         }else{
-                            var temporaryCityParameter={
-                                name:"",
-                                time:""
-                            };
-                            
-                            if(city.name==obj.miasta[0]){
-                                temporaryCityParameter.name=obj.miasta[1];
-                            }else{
-                                temporaryCityParameter.name=obj.miasta[0];
+                            var support= mainAlgorithmSupport(city,obj,"unreachableCities");
+                            if(support[0]){
+                                city.unreachableCities.push(support[1]);
                             }
-                            temporaryCityParameter.time=obj.czas_przejazdu;
-                            //Flag Variable to  achieve only one city.
-                            var isCityUnique=true;
-                            city.unreachableCities.forEach(function(obj){
-                                if(obj.name==temporaryCityParameter.name){
-                                    isCityUnique=false;
-                                }
-                            })
-                            if(isCityUnique){
-                                city.unreachableCities.push(temporaryCityParameter);
+                        }
+                    }
+                });
+            }else{
+               //THE VARIABLE IS USED FOR CREATING BLACK LIST
+               citiesWithoutFirebrigade.push(city.name);
+                
+               mainDataGlobal.drogi.forEach(function(obj){
+                    if(city.name==obj.miasta[0] || city.name==obj.miasta[1]){
+                        if(maxTimeGlobal>=obj.czas_przejazdu){
+                            var support= mainAlgorithmSupport(city,obj,"reachableFrom");
+                            if(support[0]){
+                                city.reachableFrom.push(support[1]);
                             }
                         }
                     }
@@ -125,6 +125,7 @@ function onReaderLoad(event){
             }
             processedDataGlobal.push(city);
         })
+        console.log(processedDataGlobal);
         
         
         //BLACK LIST- CITIES THAT CAN'T BE REACHED FROM ANYWHERE
@@ -148,17 +149,64 @@ function onReaderLoad(event){
         //DISPLAY THE CRITICAL TIME ON THE WEB PAGE
         $('#time-span')[0].innerHTML=maxTimeGlobal;
         
-        //DISPLAY THE CITIES REPORT
-        
-        //DISPLAY BLACK LIST
+         //DISPLAY BLACK LIST
         if(blackList.length==0){
             $('#black-list-header').after("<div class=\"black-list-positive\"><p>Good news! Every city, even without fire brigade is save, travel time from other cities is smaller than critical time!</p></div>" );
         }else{
-            $('#black-list-header').after("<div class=\"black-list-negative\"><p>Bad news! There cities have no fire brigade and maximum time exceeds travel time from another cities:</p></div>" );
+            $('#black-list-header').after("<div class=\"black-list-negative\"><p>Bad news! These cities have no fire brigade and travel time from another cities exceeds critical time:</p></div>" );
             blackList.forEach(function(obj){
-                 $('.black-list-negative').append("<p>"+obj+"</p>\n");
+                 $('.black-list-negative').append("<p>City name: \""+obj+"\"</p>\n");
             })
         }
+        
+        //DISPLAY THE CITIES REPORT
+        processedDataGlobal.forEach(function(obj,index){
+            var hasFirebrigade;
+            var temporaryReachableCities=[];
+            var temporaryUnreachableCities=[];
+            var temporaryReachableFromCities=[];
+            var temporaryCityParameter={
+                name:"",
+                time:""
+            };
+            if(obj.hasFirebrigade==true){
+                
+                $('.cities-report').append("<p>City: \""+obj.name+"\" has fire brigade.</p>\n");
+                
+                if(obj.reachableCities.length!=0){
+                    $('.cities-report').append("<div id=\"reachable-city-"+(index+1)+"\" class=\"cities-positive\"><p>Reachable cities by \""+obj.name+"\" are:</p></div>\n");
+                    
+                    obj.reachableCities.forEach(function(objInner){
+                        $('#reachable-city-'+(index+1)).append("<p>City \""+objInner.name+"\" in <span>"+objInner.time+"</span> time units</p>");
+                    })
+                    
+                }else{
+                    $('.cities-report').append("<div class=\"cities-negative\"><p>No reachable cities in such short time!</p></div>\n");
+                }
+                if(obj.unreachableCities.length!=0){
+                    $('.cities-report').append("<div id=\"unreachable-city-"+(index+1)+"\" class=\"cities-negative\"><p>Unreachable cities by \""+obj.name+"\" are:</p></div>\n");
+                    obj.unreachableCities.forEach(function(objInner){
+                        $('#unreachable-city-'+(index+1)).append("<p>City \""+objInner.name+"\" in <span>"+objInner.time+"</span> time units</p>");
+                    })
+                }else{
+                    $('.cities-report').append("<div class=\"cities-positive\"><p>Every city can be reached by this city in this time</p></div>\n");
+                }
+                
+            }else{
+                $('.cities-report').append("<p>City: \""+obj.name+"\" do NOT have fire brigade.</p>\n");
+                if(obj.reachableFrom.length!=0){
+                    $('.cities-report').append("<div id=\"reachable-from-city-"+(index+1)+"\" class=\"cities-positive\"><p>Reachable from cities:</p></div>\n");
+                    obj.reachableFrom.forEach(function(objInner){
+                        $('#reachable-from-city-'+(index+1)).append("<p>From city \""+objInner.name+"\" in <span>"+objInner.time+"</span> time units</p>");
+                    })
+                }else{
+                    $('.cities-report').append("<div id=\"reachable-from-city-"+(index+1)+"\" class=\"cities-negative\"><p>DANGER! City is not reachable from anywhere in this time!</p></div>\n");
+                }
+            }
+            
+            $('.cities-report').append("<hr>\n");
+        })
+        
         //DATA DISPLAY SECTION END
         //--------------------------------------------------------------------
         
