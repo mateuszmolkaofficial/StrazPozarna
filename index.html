@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire!</title>
+    <!--    FAV ICON-->
+    <link rel=icon href="icons/favicon-fire.ico">
+    <!--     BOOTSTRAP-->
+    <link rel="stylesheet" href="css/bootstrap.min.css"> 
+    <!--    MAIN STYLES-->
+    <link rel="stylesheet" href="css/style.css">
+    <!--    FONT AWSOME-->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!--    GOOGLE FONTS-->
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Oxygen|Revalia" rel="stylesheet">
+    <!--    RESPONSIVE-->
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+<body>
+<div id="main-container">
+<!----------------------------------------------------->
+<!--DATA INSERT START-->
+     <div id="data-insert">
+        <div id="data-insert-panel">
+             <h2>Insert your data</h2>
+             <p>Choose .JSON file with desired data.<br> More inside README file.</p>
+             
+             <input type="file" name="file" id="file" class="inputfile" />
+             <label id="for-file" for="file">Choose a file</label>
+        </div>
+     </div>
+<!--DATA INSERT END-->
+<!----------------------------------------------------->
+<!--DATA OUTPUT START-->
+     <div id="data-output">
+         <h1 id="h1">Fire brigade needed!</h1>
+          <div class="data-output-field">
+              <h2>Critical time</h2>
+              <p>The critical time for this operation is <span id="time-span"></span> time units! Hurry up!</p>
+          </div>
+          <div class="data-output-field">
+              <h2 id="black-list-header">Black list</h2>
+          </div>
+          <div class="data-output-field">
+              <h2>Cities report</h2>
+          </div>
+     </div>
+<!--DATA OUTPUT END-->
+<!----------------------------------------------------->
+  </div>
+    <!--SCRIPT START    -->
+        <script src="js/jquery-3.1.1.min.js"></script>
+        <script src="js/custom.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    <!--SCRIPT END    -->
+</body>
+</html>

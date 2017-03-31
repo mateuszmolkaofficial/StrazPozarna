@@ -1,0 +1,135 @@
+/*GENERAL STYLES START*/
+*{
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px; 
+    background-color: #363b4d;
+}
+h1{
+    color:#f44336;
+    margin: 0;
+    text-align: center;
+    font-size: 60px;
+    font-weight: bold;
+    font-family: 'Revalia', cursive;
+    padding: 20px;
+}
+.row {
+    margin-right: 0;
+    margin-left: 0;
+}
+h2{
+    font-weight: bold;
+    padding: 10px;
+    font-family: 'Baloo Bhaina', cursive;
+    margin: 0px;
+    font-size:40px;
+}
+p{
+    font-family: 'Oxygen', sans-serif;
+    padding: 10px;
+}
+/*-----------------*/
+/*GOOGLE FONTS TEMPLATE*/
+/*
+font-family: 'Revalia', cursive;
+font-family: 'Baloo Bhaina', cursive;
+font-family: 'Oxygen', sans-serif;
+*/
+/*-----------------*/
+
+/*GENERAL STYLES END*/
+/* ------------------------------------------------ */
+/*DATA INSERT STYLES START*/
+
+#data-insert{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    z-index: 10;
+}
+#data-insert-panel{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(244,67,54,1);
+    border-radius: 10px;
+    text-align: center;
+    border: black 1px solid;
+    padding: 20px;
+}
+#file{
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+    padding: 10px;
+    margin: 15px;
+    border-radius: 5px;
+}
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: red;
+}
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}
+
+/*DATA INSERT STYLES END*/
+/* ------------------------------------------------ */
+/*DATA OUTPUT STYLES START*/
+#data-output{
+    background-color: rgb(240,240,240);
+    width: 80%;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    left: 50%;
+    transform: translate(-50%,0);
+    position: absolute;
+    z-index: 0;
+    border-radius:10px;
+}
+.data-output-field{
+    background-color: rgb(220,220,220);
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 10px;
+    margin-top:20px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+.data-output-field p{
+    font-size: 30px;
+    margin: 0;
+}
+#time-span{
+    color:#f44336;
+    font-size: 40px;
+    font-family: 'Baloo Bhaina', cursive;
+}
+.black-list-positive{
+    background-color: lightgreen;
+    border: green 2px solid;
+    border-radius: 10px;
+    display:inline-block;
+}
+.black-list-negative{
+    background-color: rgba(244,67,54,0.5);
+    border: #f44336 2px solid;
+    border-radius: 10px;
+    display:inline-block;
+}
+/*DATA OUTPUT STYLES END*/
