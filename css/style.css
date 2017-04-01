@@ -27,6 +27,15 @@ h2{
     margin: 0px;
     font-size:40px;
 }
+h3{
+    font-weight: bold;
+    padding-top: 20px;
+    padding-bottom: 0px;
+    font-family: 'Oxygen', sans-serif;
+    margin: 0px;
+    font-size:30px;
+    text-align: center;
+}
 p{
     font-family: 'Oxygen', sans-serif;
     padding: 10px;
@@ -93,7 +102,7 @@ font-family: 'Oxygen', sans-serif;
 /*DATA OUTPUT STYLES START*/
 #data-output{
     background-color: rgb(240,240,240);
-    width: 80%;
+    width: 92%;
     margin-top: 50px;
     margin-bottom: 20px;
     left: 50%;
@@ -110,10 +119,13 @@ font-family: 'Oxygen', sans-serif;
     margin-top:20px;
     margin-bottom: 20px;
     padding: 20px;
+    text-align: center;
 }
 .data-output-field p{
     font-size: 30px;
     margin: 0;
+    padding-top: 0;
+    text-align: left;
 }
 #time-span{
     color:#f44336;
@@ -160,23 +172,33 @@ font-family: 'Oxygen', sans-serif;
     font-family: 'Oxygen', sans-serif;
     padding: 10px;
     font-size:24px;
+    text-align: left;
 }
 .black-list-negative li{
-    font-family: 'Oxygen', sans-serif;
+    font-family: 'Baloo Bhaina', cursive;
     padding: 10px;
-    font-size:24px;
+    font-size:30px;
+    text-align: left;
 }
 .cities-report li span{
-    display: inline-block;
-    color: white;
-    background-color: #363b4d;
-    border-radius: 50%;
-    height: 35px;
-    width: 35px;
-    border-radius: 30px;
-    text-align: center;
+    color: green;
+    font-weight: bold;
+    font-size: 30px;
 }
-
+.fa{
+    padding:10px;
+    
+}
+.fa-check{
+    color: green;
+}
+.fa-times{
+    color: red;
+}
+.fa-fire-extinguisher{
+    color: red;
+    padding-left: 20px;
+}
 
 
 /*DATA OUTPUT STYLES END*/

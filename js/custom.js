@@ -171,27 +171,53 @@ function onReaderLoad(event){
             };
             if(obj.hasFirebrigade==true){
                 
-                $('.cities-report').append("<div id=\"city-"+obj.name+"\"><p><i class=\"fa fa-check\" aria-hidden=\"true\"></i>City \""+obj.name+"\" has fire brigade.</p>\n");
+                //CITY TITLE
+                $('.cities-report').append("<div id=\"city-"+obj.name+"\" class=\"positive-check\"><h3>City \""+obj.name+"\"</h3></div>");
+                
+                //CONFIRMATION THAT CITY IS SAVE
+                $('#city-'+obj.name).append("<p><i class=\"fa fa-check fa-2x\" aria-hidden=\"true\"></i>City is save.</p>\n");
+                
+                //CONFIRMATION THE CITY HAS A FIRE BRIGADE
+                $('#city-'+obj.name).append("<p><i class=\"fa fa-fire-extinguisher  fa-2x\" aria-hidden=\"true\"></i>City has a fire brigade</p><hr>\n");
                 
                 if(obj.reachableCities.length!=0){
-                    $('.cities-report').append("<div id=\"reachable-city-"+(index+1)+"\" class=\"cities-positive\"><p>Reachable cities from \""+obj.name+"\" are:</p><ul id=\"reachable-city-list"+(index+1)+"\"></ul></div>\n");
+                    $('#city-'+obj.name).append("<div id=\"reachable-city-"+(index+1)+"\" class=\"cities-positive\"><p>Reachable cities from city \""+obj.name+"\" are:</p><ul id=\"reachable-city-list"+(index+1)+"\"></ul></div>\n");
                     
                     obj.reachableCities.forEach(function(objInner){
                         $('#reachable-city-list'+(index+1)).append("<li>City \""+objInner.name+"\" in <span>"+objInner.time+"</span> time units</li>");
                     })
                     
                 }else{
-                    $('.cities-report').append("<div class=\"cities-negative\"><p>No reachable cities in such short time!</p></div>\n");
+                    $('#city-'+obj.name).append("<div class=\"cities-negative\"><p>No reachable cities in such short time!</p></div>\n");
                 }
             }else{
-                $('.cities-report').append("<p>City \""+obj.name+"\" do NOT have fire brigade.</p>\n");
                 if(obj.reachableFrom.length!=0){
-                    $('.cities-report').append("<div id=\"reachable-from-city-"+(index+1)+"\" class=\"cities-positive\"><p>This city is reachable from cities:</p><ul id=\"reachable-from-city-list"+(index+1)+"\"></ul></div>\n");
+                    //CITY TITLE
+                    $('.cities-report').append("<div id=\"city-"+obj.name+"\" class=\"positive-check\"><h3>City \""+obj.name+"\"</h3></div>");
+                    
+                    //CONFIRMATION THAT CITY IS SAVE
+                    $('#city-'+obj.name).append("<p><i class=\"fa fa-check fa-2x\" aria-hidden=\"true\"></i>City is save.</p>\n");
+                    
+                    //CONFIRMATION THE CITY HAS NO FIRE BRIGADE
+                    $('#city-'+obj.name).append("<p><i class=\"fa fa-times  fa-2x\" aria-hidden=\"true\"></i>City has no fire brigade</p><hr>\n");
+                    
+                    $('#city-'+obj.name).append("<div id=\"reachable-from-city-"+(index+1)+"\" class=\"cities-positive\"><p>This city is reachable from cities:</p><ul id=\"reachable-from-city-list"+(index+1)+"\"></ul></div>\n");
                     obj.reachableFrom.forEach(function(objInner){
                         $('#reachable-from-city-list'+(index+1)).append("<li>From city \""+objInner.name+"\" in <span>"+objInner.time+"</span> time units</li>");
                     })
+                    
                 }else{
-                    $('.cities-report').append("<div id=\"reachable-from-city-"+(index+1)+"\" class=\"cities-negative\"><p>DANGER! City is not reachable from anywhere in such short time!</p></div>\n");
+                    
+                    //CITY TITLE
+                    $('.cities-report').append("<div id=\"city-"+obj.name+"\" class=\"negative-check\"><h3>City \""+obj.name+"\"</h3></div>");
+                    
+                    //CONFIRMATION THAT CITY IS NOT SAVE
+                    $('#city-'+obj.name).append("<p><i class=\"fa fa-times fa-2x\" aria-hidden=\"true\"></i>City is not save.</p>\n");
+                    
+                    //CONFIRMATION THE CITY HAS NO FIRE BRIGADE
+                    $('#city-'+obj.name).append("<p><i class=\"fa fa-times  fa-2x\" aria-hidden=\"true\"></i>City has no fire brigade</p><hr>\n");
+                    
+                    $('#city-'+obj.name).append("<div id=\"reachable-from-city-"+(index+1)+"\" class=\"cities-negative\"><p>DANGER! City is not reachable from anywhere in such short time!</p></div>\n");
                 }
             }
             
