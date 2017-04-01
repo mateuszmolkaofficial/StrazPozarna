@@ -142,19 +142,41 @@ font-family: 'Oxygen', sans-serif;
     border-top: 1px solid #363b4d;
     width: 95%;
 }
-.cities-positive{
+.positive-check{
     background-color: lightgreen;
     border: green 2px solid;
     border-radius: 10px;
     display:inline-block;
     margin:5px;
 }
-.cities-negative{
+.negative-check{
     background-color: rgba(244,67,54,0.5);
     border: #f44336 2px solid;
     border-radius: 10px;
     display:inline-block;
     margin:5px;
 }
+.cities-report li{
+    font-family: 'Oxygen', sans-serif;
+    padding: 10px;
+    font-size:24px;
+}
+.black-list-negative li{
+    font-family: 'Oxygen', sans-serif;
+    padding: 10px;
+    font-size:24px;
+}
+.cities-report li span{
+    display: inline-block;
+    color: white;
+    background-color: #363b4d;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+
 
 /*DATA OUTPUT STYLES END*/

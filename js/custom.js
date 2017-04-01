@@ -153,9 +153,9 @@ function onReaderLoad(event){
         if(blackList.length==0){
             $('#black-list-header').after("<div class=\"black-list-positive\"><p>Good news! Every city, even without fire brigade is save, travel time from other cities is smaller than critical time!</p></div>" );
         }else{
-            $('#black-list-header').after("<div class=\"black-list-negative\"><p>Bad news! These cities have no fire brigade and travel time from another cities exceeds critical time:</p></div>" );
+            $('#black-list-header').after("<div class=\"black-list-negative\"><p>Bad news! These cities have no fire brigade and travel time from another cities exceeds critical time:</p><ul></ul></div>" );
             blackList.forEach(function(obj){
-                 $('.black-list-negative').append("<p>City name: \""+obj+"\"</p>\n");
+                 $('.black-list-negative ul').append("<li>City \""+obj+"\"</li>\n");
             })
         }
         
@@ -171,36 +171,27 @@ function onReaderLoad(event){
             };
             if(obj.hasFirebrigade==true){
                 
-                $('.cities-report').append("<p>City: \""+obj.name+"\" has fire brigade.</p>\n");
+                $('.cities-report').append("<div id=\"city-"+obj.name+"\"><p><i class=\"fa fa-check\" aria-hidden=\"true\"></i>City \""+obj.name+"\" has fire brigade.</p>\n");
                 
                 if(obj.reachableCities.length!=0){
-                    $('.cities-report').append("<div id=\"reachable-city-"+(index+1)+"\" class=\"cities-positive\"><p>Reachable cities by \""+obj.name+"\" are:</p></div>\n");
+                    $('.cities-report').append("<div id=\"reachable-city-"+(index+1)+"\" class=\"cities-positive\"><p>Reachable cities from \""+obj.name+"\" are:</p><ul id=\"reachable-city-list"+(index+1)+"\"></ul></div>\n");
                     
                     obj.reachableCities.forEach(function(objInner){
-                        $('#reachable-city-'+(index+1)).append("<p>City \""+objInner.name+"\" in <span>"+objInner.time+"</span> time units</p>");
+                        $('#reachable-city-list'+(index+1)).append("<li>City \""+objInner.name+"\" in <span>"+objInner.time+"</span> time units</li>");
                     })
                     
                 }else{
                     $('.cities-report').append("<div class=\"cities-negative\"><p>No reachable cities in such short time!</p></div>\n");
                 }
-                if(obj.unreachableCities.length!=0){
-                    $('.cities-report').append("<div id=\"unreachable-city-"+(index+1)+"\" class=\"cities-negative\"><p>Unreachable cities by \""+obj.name+"\" are:</p></div>\n");
-                    obj.unreachableCities.forEach(function(objInner){
-                        $('#unreachable-city-'+(index+1)).append("<p>City \""+objInner.name+"\" in <span>"+objInner.time+"</span> time units</p>");
-                    })
-                }else{
-                    $('.cities-report').append("<div class=\"cities-positive\"><p>Every city can be reached by this city in this time</p></div>\n");
-                }
-                
             }else{
-                $('.cities-report').append("<p>City: \""+obj.name+"\" do NOT have fire brigade.</p>\n");
+                $('.cities-report').append("<p>City \""+obj.name+"\" do NOT have fire brigade.</p>\n");
                 if(obj.reachableFrom.length!=0){
-                    $('.cities-report').append("<div id=\"reachable-from-city-"+(index+1)+"\" class=\"cities-positive\"><p>Reachable from cities:</p></div>\n");
+                    $('.cities-report').append("<div id=\"reachable-from-city-"+(index+1)+"\" class=\"cities-positive\"><p>This city is reachable from cities:</p><ul id=\"reachable-from-city-list"+(index+1)+"\"></ul></div>\n");
                     obj.reachableFrom.forEach(function(objInner){
-                        $('#reachable-from-city-'+(index+1)).append("<p>From city \""+objInner.name+"\" in <span>"+objInner.time+"</span> time units</p>");
+                        $('#reachable-from-city-list'+(index+1)).append("<li>From city \""+objInner.name+"\" in <span>"+objInner.time+"</span> time units</li>");
                     })
                 }else{
-                    $('.cities-report').append("<div id=\"reachable-from-city-"+(index+1)+"\" class=\"cities-negative\"><p>DANGER! City is not reachable from anywhere in this time!</p></div>\n");
+                    $('.cities-report').append("<div id=\"reachable-from-city-"+(index+1)+"\" class=\"cities-negative\"><p>DANGER! City is not reachable from anywhere in such short time!</p></div>\n");
                 }
             }
             
