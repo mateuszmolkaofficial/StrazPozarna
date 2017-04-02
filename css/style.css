@@ -111,6 +111,12 @@ font-family: 'Oxygen', sans-serif;
     z-index: 0;
     border-radius:10px;
 }
+#new-data-button{
+    border-radius: 5px;
+    border: 2px black solid;
+    color: white;
+    background-color: #363b4d;
+}
 .data-output-field{
     background-color: rgb(220,220,220);
     width: 90%;

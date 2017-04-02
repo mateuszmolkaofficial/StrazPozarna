@@ -237,4 +237,10 @@ function onReaderLoad(event){
 //MAIN DOCUMENT
 $(function(){
     $('#file').change(onUpload);
+    $('#new-data-button').click(function(){
+        location.reload();
+        $('#file').val("");
+        processedDataGlobal=[];
+        $('#data-insert').fadeIn(1000);
+    });
 })
