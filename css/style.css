@@ -149,6 +149,7 @@ font-family: 'Oxygen', sans-serif;
     border: rgb(255,255,0) 2px solid;
     border-radius: 10px;
     display:inline-block;
+    width: 95%;
 }
 .cities-report hr{
     border-top: 1px solid #363b4d;
@@ -160,6 +161,7 @@ font-family: 'Oxygen', sans-serif;
     border-radius: 10px;
     display:inline-block;
     margin:5px;
+    width: 95%;
 }
 .negative-check{
     background-color: rgba(244,67,54,0.5);
@@ -167,6 +169,7 @@ font-family: 'Oxygen', sans-serif;
     border-radius: 10px;
     display:inline-block;
     margin:5px;
+    width: 95%;
 }
 .cities-report li{
     font-family: 'Oxygen', sans-serif;

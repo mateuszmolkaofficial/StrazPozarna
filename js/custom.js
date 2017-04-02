@@ -172,7 +172,7 @@ function onReaderLoad(event){
             if(obj.hasFirebrigade==true){
                 
                 //CITY TITLE
-                $('.cities-report').append("<div id=\"city-"+obj.name+"\" class=\"positive-check\"><h3>City \""+obj.name+"\"</h3></div>");
+                $('.cities-report').append("<div id=\"city-"+obj.name+"\" class=\"positive-check\"><h3>City\""+obj.name+"\"</h3></div>");
                 
                 //CONFIRMATION THAT CITY IS SAVE
                 $('#city-'+obj.name).append("<p><i class=\"fa fa-check fa-2x\" aria-hidden=\"true\"></i>City is save.</p>\n");
