@@ -45,7 +45,7 @@ function mainAlgorithmSupport(city,obj,which){
 }
 //UPLOAD 1st PART WHICH LAUNCHES onReaderLoad() FUNCTION
 //AND CHECKS WHEATHER FILES WAS .JSON
-function onUpload(){
+function onUpload(event){
     
         //CREATING THE FileReader
         var reader = new FileReader();
@@ -63,7 +63,7 @@ function onUpload(){
         }
     }
 
-//FUNCTION WHICH IS EXECUTED AFTER UPLOADING A FILE
+//FUNCTION WHICH IS EXECUTED AFTER UPLOADING A FILE (PROCCESING DATA, DISPLAYING DATA)
 function onReaderLoad(event){
     
     //PASSING DATA FROM FILE
@@ -125,7 +125,6 @@ function onReaderLoad(event){
             }
             processedDataGlobal.push(city);
         })
-        console.log(processedDataGlobal);
         
         
         //BLACK LIST- CITIES THAT CAN'T BE REACHED FROM ANYWHERE

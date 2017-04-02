@@ -1,15 +1,125 @@
------------------------------------------------------
-1. INTRODUCTION
------------------------------------------------------
-2. INSTALATION
------------------------------------------------------
-3. SYSTEM REQUREMENTS
------------------------------------------------------
-4. TECHNOLOGIES USED
--
+"STRAZ POZARNA" application version 1.0 02/04/2017
 
-BOOTSTRAP
-JQUERY
-FONT AWSOME
-GOOGLE FONTS
-JS FILE READER
+Author:
+    Mateusz Molka
+    Cracow, Poland
+Contact data:
+    molkamateuszjanusz@gmail.com
+
+
+---------------------------------------------------------------------------------------------------
+1. GENERAL NOTES
+
+    ******************************
+    - The application was created for recruitment process purposes in Proximetry Poland Sp. z o.o.
+    ******************************
+    - Assumptions given in the instruction were implemented and on their basis data can be
+    processed and displayed in the form of a web application.
+    ******************************
+    - According to the instruction files which are going to be evaluated are:
+        -JavaScript File, which is "custom.js". PATH: "../StrazPozarna/js/custom.js"
+        -README File. PATH: "../StrazPozarna/README"
+    ****************************** 
+---------------------------------------------------------------------------------------------------
+2. BROWSER REQUIREMENTS
+
+    ******************************
+    - The best performence with the browser: Google Chrome 57 or Mozilla Firefox 52 under Ubuntu 16.06
+    ****************************** 
+    - The main feature of the application is file upload (JavaScript "FileReader()") which is supported by following browsers, according 
+    to the feature's author documentation:
+        -IE 10+
+        -FIREFOX 3.6+
+        -CHROME 6.0+
+        -SAFARI 6.0+ 
+        -OPERA 11.1+ 
+    ****************************** 
+    !! ATTENTION !! The application was developed under Ubuntu 16.06 so it wasn't possible for the author
+    to check the application with all commonly used browsers. If there are any mark up's please contact 
+    the author via e-mail (Given above). 
+    ******************************
+    
+---------------------------------------------------------------------------------------------------
+2. INSTALATION & USAGE
+
+    ******************************
+    - To start application DOUBLE CLICK on the index.html file and browser will open the program automatically.
+    If this doesn't work or you don't want to open the application in your default browser type into your 
+    browser: "file:///**YOUR CURRENT PATH**/StrazPozarna/index.html".
+    ******************************
+    - To make application perform, one has to upload file with the data. The program user will be asked for it.
+    ******************************
+    - Data can be inserted into the application ONLY with the usage of ".JSON" file.
+    ******************************
+    - ".JSON" file with the desired data has to store JSON Object with the following structure:
+        {
+            "miasta" : [
+                            {
+                            "nazwa" : "String",
+                            "ma_jednostke" : boolean
+                            }
+                       ],
+            "drogi" : [
+                            {
+                            "miasta" : ["String", "String"],
+                            "czas_przejazdu" : integer
+                            }
+                      ],
+
+            "max_czas_przejazdu" : integer
+        }
+    ******************************
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
+    !! ATTENTION !! THERE IS ALREADY PREPARED .JSON FILE UNDER THE PATH: "../StrazPozarna/data.json".
+    IN THE FILE THERE IS EXAMPLE OF THE DATA WHICH ARE SUITABLE FOR THE PROGRAM. THE DATA CAN BE USED,
+    MODIFIED ETC. TO CHECK HOW THE APPLICATION WORKS.
+    
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    ******************************
+    - If the data file had wrong extension the error will occur.
+    - If the JSON Object does not have desired structure the error will occur.
+    ******************************
+    - The data will be processed and shown in sections: 
+        - Enter new data
+        - Critical time- the maximum time for the operation will be shown
+        - Black list- list of cities that are in danger which means: have no fire brigade and 
+        cannot be reached from any other city in given critical time
+        - Cities report- detailed report of every city
+    ******************************
+
+---------------------------------------------------------------------------------------------------
+3. TECHNOLOGIES USED
+    
+    ******************************
+    - HTML 5
+    ******************************
+    - JavaScript 
+        * jQuery
+        * FileReader
+    ******************************
+    - CSS 3
+    ******************************
+    - Additional features
+        * Font awesome
+        * Bootstrap
+        * Google fonts
+    
+    
+---------------------------------------------------------------------------------------------------
+4. LICENCE
+
+    Original work Copyright 2017 Mateusz Molka
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+    
+---------------------------------------------------------------------------------------------------
+
